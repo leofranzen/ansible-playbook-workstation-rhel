@@ -1,0 +1,45 @@
+- name: Import key vscode repository
+  ansible.builtin.rpm_key:
+    key: https://packages.microsoft.com/keys/microsoft.asc
+    state: present
+
+- name: Add vscode repository
+  ansible.builtin.yum_repository:
+    name: vscode
+    description: Visual Studio Code
+    baseurl: https://packages.microsoft.com/yumrepos/vscode
+    gpgkey: https://packages.microsoft.com/keys/microsoft.asc
+    enabled: true
+    gpgcheck: true
+
+- name: Install editor packages
+  ansible.builtin.dnf:
+    name:
+      - code
+      - vim
+
+- name: Vim set number
+  ansible.builtin.lineinfile:
+    path: /etc/vimrc
+    regexp: '^set number'
+    line: set number
+- name: Vim set cursorline
+  ansible.builtin.lineinfile:
+    path: /etc/vimrc
+    regexp: '^set cursorline'
+    line: set cursorline
+- name: Vim set tabstop
+  ansible.builtin.lineinfile:
+    path: /etc/vimrc
+    regexp: '^set tabstop'
+    line: set tabstop=4
+- name: Vim set shiftwidth
+  ansible.builtin.lineinfile:
+    path: /etc/vimrc
+    regexp: '^set shiftwidth'
+    line: set shiftwidth=4
+- name: Vim set expandtab
+  ansible.builtin.lineinfile:
+    path: /etc/vimrc
+    regexp: '^set expandtab'
+    line: set expandtab

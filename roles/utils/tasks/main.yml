@@ -1,0 +1,11 @@
+- name: Installing utils
+  ansible.builtin.dnf:
+    name:
+      - bzip2
+      - tar
+      - unzip
+      - curl
+      - git
+      - wget
+      - openssh-clients
+    state: present

@@ -1,0 +1,6 @@
+- name: Install container packages
+  ansible.builtin.dnf:
+    name:
+      - podman
+      - buildah
+    state: present

@@ -1,0 +1,36 @@
+- name: Install gnome packages
+  ansible.builtin.dnf:
+    name:
+      - gdm
+      - gnome-shell
+      - gnome-terminal
+      - nautilus
+      - abattis-cantarell-fonts
+      - dejavu-sans-mono-fonts
+    install_weak_deps: false
+    state: present
+
+- name: Install gnome utils packages
+  ansible.builtin.dnf:
+    name:
+      - firefox
+      - gnome-screenshot
+      - gnome-terminal-nautilus
+      - gnome-bluetooth
+      - gnome-calculator
+      - gnome-disk-utility
+      - eog
+      - evince
+    install_weak_deps: false
+    state: present
+
+- name: Enable service gdm
+  ansible.builtin.systemd:
+    name: gdm
+    enabled: true
+
+- name: Change default target to graphical
+  ansible.builtin.file:
+    src: /usr/lib/systemd/system/graphical.target
+    dest: /etc/systemd/system/default.target
+    state: link

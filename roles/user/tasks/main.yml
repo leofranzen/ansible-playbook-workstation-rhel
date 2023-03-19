@@ -1,0 +1,13 @@
+- name: Add user
+  ansible.builtin.user:
+    name: "{{ user }}"
+    shell: /bin/bash
+    uid: 1000
+
+- name: Create storage directory
+  ansible.builtin.file:
+    path: /file/
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: '0700'
+    state: directory

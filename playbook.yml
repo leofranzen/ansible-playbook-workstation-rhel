@@ -1,0 +1,13 @@
+- name: playbook-workstation
+  hosts: all
+  gather_facts: no
+  roles:
+    - timezone
+    - hostname
+    - user
+    - gnome
+    - container
+    - utils
+    - epel-release
+    - editor
+    - reboot
